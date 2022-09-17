@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using checkpoint7.Models;
 using Dapper;
+using Microsoft.AspNetCore.Mvc;
 
 namespace checkpoint7.Services
 {
@@ -34,6 +35,26 @@ namespace checkpoint7.Services
         }
 
         internal StepsRepository Create(StepsRepository newStep)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal ActionResult<Step> CreateStep(Step stepData)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal List<Step> getRecipeSteps(int recipeId)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal Step GetStepById(int stepId)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal ActionResult<string> DeleteStep(int stepId)
         {
             throw new NotImplementedException();
         }
