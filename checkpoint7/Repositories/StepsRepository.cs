@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Data;
 using checkpoint7.Models;
@@ -16,47 +15,43 @@ namespace checkpoint7.Services
             _db = db;
         }
 
-        internal List<Step> GetAll()
-        {
-            string sql = @"
-            SELECT
-            s.*
-            a.*
-            FROM steps s
-            JOIN accounts a ON a.id = s.creatorID;
-            ";
-
-            List<Step> steps = _db.Query<Step, Account, Step>(sql, (step, account) =>
-            {
-                step.Creator = account;
-                return step;
-            }).ToList();
-            return steps;
-        }
-
-        internal StepsRepository Create(StepsRepository newStep)
-        {
-            throw new NotImplementedException();
-        }
-
         internal ActionResult<Step> CreateStep(Step stepData)
         {
-            throw new NotImplementedException();
+            string sql = @"
+      INSERT INTO steps
+      (position, body, recipeId)
+      VALUES
+      (@Position, @body, @RecipeId);
+      SELECT LAST_INSERT_ID();
+      ";
+            int id = _db.ExecuteScalar<int>(sql, stepData);
+            stepData.Id = id;
+            return stepData;
         }
 
         internal List<Step> getRecipeSteps(int recipeId)
         {
-            throw new NotImplementedException();
+            string sql = @"
+      SELECT * FROM steps WHERE recipeId = @recipeId;
+      ";
+            return _db.Query<Step>(sql, new { recipeId }).ToList();
         }
 
-        internal Step GetStepById(int stepId)
+        internal Step GetStepById(int id)
         {
-            throw new NotImplementedException();
+            string sql = @"
+      SELECT * FROM steps WHERE id = @id;
+      ";
+            return _db.QueryFirstOrDefault<Step>(sql, new { id });
         }
 
         internal ActionResult<string> DeleteStep(int stepId)
         {
-            throw new NotImplementedException();
+            string sql = @"
+      DELETE FROM steps WHERE id = @stepId LIMIT 1
+      ";
+            _db.Execute(sql, new { stepId });
+            return ("deleted");
         }
     }
 }

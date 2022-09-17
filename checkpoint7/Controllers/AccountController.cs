@@ -13,10 +13,12 @@ namespace checkpoint7.Controllers
     public class AccountController : ControllerBase
     {
         private readonly AccountService _accountService;
+        private readonly RecipesService _recipesService;
 
-        public AccountController(AccountService accountService)
+        public AccountController(AccountService accountService, RecipesService recipesService)
         {
             _accountService = accountService;
+            _recipesService = recipesService;
         }
 
         [HttpGet]
@@ -29,6 +31,21 @@ namespace checkpoint7.Controllers
                 return Ok(_accountService.GetOrCreateProfile(userInfo));
             }
             catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpGet("recipes")]
+        public async Task<ActionResult<List<Recipe>>> GetAccountRecipesAsync()
+        {
+            try
+            {
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                List<Recipe> recipes = _recipesService.GetAccountRecipes(userInfo.Id);
+                return recipes;
+            }
+            catch (System.Exception e)
             {
                 return BadRequest(e.Message);
             }

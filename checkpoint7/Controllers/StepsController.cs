@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using checkpoint7.Models;
 using checkpoint7.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -17,18 +16,46 @@ namespace checkpoint7.Controllers
             _stepsService = stepsService;
         }
 
-        [HttpGet]
-        public ActionResult<List<Step>> GetAll()
+        [HttpGet("{id}")]
+        public ActionResult<Step> GetStepById(int id)
         {
             try
             {
-                List<Step> steps = _stepsService.GetAll();
-                return Ok(steps);
+                return _stepsService.GetStepById(id);
             }
             catch (Exception e)
             {
+                return BadRequest(e.Message);
+            }
+        }
 
-                return BadRequest(e);
+        [HttpPost]
+        [Authorize]
+        public async Task<ActionResult<Step>> CreateStepAsync([FromBody] Step stepData)
+        {
+            try
+            {
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                return _stepsService.CreateStep(stepData, userInfo.Id)
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        [Authorize]
+        public async Task<ActionResult<string>> deleteStepAsync(int id)
+        {
+            try
+            {
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                return _stepsService.DeleteStep(id, userInfo.Id);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message)
             }
         }
     }

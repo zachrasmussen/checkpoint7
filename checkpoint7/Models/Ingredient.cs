@@ -1,11 +1,10 @@
 namespace checkpoint7.Models
 {
-    public class Step
+    public class Ingredient
     {
         public int Id { get; set; }
-        public int Position { get; set; }
-        public string Body { get; set; }
+        public string Name { get; set; }
+        public string Quantity { get; set; }
         public int RecipeId { get; set; }
     }
-
 }
