@@ -7,15 +7,41 @@ CREATE TABLE IF NOT EXISTS accounts(
   picture varchar(255) COMMENT 'User Picture'
 ) default charset utf8 COMMENT '';
 
-CREATE TABLE IF NOT EXISTS steps(
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  position INT NOT NULL,
-  body STRING NOT NULL,
-  recipeId INT NOT NULL,
-  creatorId VARCHAR(255) NOT NULL,
+CREATE TABLE
+    IF NOT EXISTS steps(
+        id INT NOT NULL AUTO_INCREMENT primary key COMMENT 'primary key',
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
+        position INT NOT NULL COMMENT 'step position',
+        body text NOT NULL COMMENT 'step body',
+        recipeId INT NOT NULL COMMENT 'ingredient recipe'
+    ) default charset utf8 COMMENT '';
 
-  FOREIGN KEY (creatorId) REFERENCES accounts(id)
-) default charset utf8 COMMENT '';
+CREATE TABLE
+    IF NOT EXISTS recipes(
+        id INT NOT NULL AUTO_INCREMENT primary key COMMENT 'primary key',
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
+        picture varchar(225) COMMENT 'recipe picture',
+        title VARCHAR(225) COMMENT 'recipe title',
+        subtitle VARCHAR(225) COMMENT 'recipe subtitle',
+        category VARCHAR(225) COMMENT 'recipe category',
+        creatorId VARCHAR(225) NOT NULL COMMENT 'recipe creator',
+        FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
+    ) default charset utf8 COMMENT '';
 
-INSERT INTO steps
-(position, body, recipeId)
+DROP TABLE recipes;
+
+CREATE TABLE
+    IF NOT EXISTS ingredients(
+        id INT NOT NULL AUTO_INCREMENT primary key COMMENT 'primary key',
+        name VARCHAR(225) NOT NULL COMMENT 'ingredient name',
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
+        quantity VARCHAR(225) NOT NULL COMMENT 'ingredient quantity',
+        recipeId INT NOT NULL COMMENT 'ingredient recipe'
+    ) default charset utf8 COMMENT '';
+
+DROP TABLE ingredients;
+
+

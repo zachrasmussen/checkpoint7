@@ -20,9 +20,8 @@
             :src="account.picture || user.picture"
             alt="account photo"
             height="40"
-            class="rounded"
+            class="rounded-circle px-3"
           />
-          <span class="mx-3 text-success lighten-30">{{ account.name || user.name }}</span>
         </div>
       </div>
       <div

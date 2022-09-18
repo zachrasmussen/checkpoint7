@@ -1,6 +1,9 @@
 
 using System;
 using System.Collections.Generic;
+using checkpoint7.Models;
+using checkpoint7.Services;
+using CodeWorks.Auth0Provider;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,6 +16,9 @@ namespace checkpoint7.Controllers
         private readonly RecipesService _recipesService;
         private readonly IngredientsService _ingredientsService;
         private readonly StepsService _stepsService;
+
+        public string CreatorId { get; private set; }
+
         public RecipesController(RecipesService recipesService, IngredientsService @ingredientsService, StepsService stepsService)
         {
             _recipesService = recipesService;
@@ -53,7 +59,7 @@ namespace checkpoint7.Controllers
         {
             try
             {
-                Recipe targetRecipe = _recipesService.GetById(id)
+                Recipe targetRecipe = _recipesService.GetById(id);
                 if (targetRecipe == null)
                 {
                     throw new SystemException("invalid recipe Id");

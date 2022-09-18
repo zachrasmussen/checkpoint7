@@ -1,3 +1,11 @@
+using System;
+using System.Threading.Tasks;
+using checkpoint7.Models;
+using checkpoint7.Services;
+using CodeWorks.Auth0Provider;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
 namespace checkpoint7.Controllers
 {
 

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using checkpoint7.Controllers;
 using checkpoint7.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,6 +9,9 @@ namespace checkpoint7.Services
     public class RecipesService
     {
         private readonly RecipesRepository _recipesRepo;
+
+        public string CreatorId { get; internal set; }
+
         public RecipesService(RecipesRepository recipesService)
         {
             _recipesRepo = recipesService;
@@ -30,6 +34,11 @@ namespace checkpoint7.Services
                 throw new Exception("invalid recipe id");
             }
             return target;
+        }
+
+        internal RecipesService GetById(object recipeId)
+        {
+            throw new NotImplementedException();
         }
 
         internal ActionResult<Recipe> UpdateRecipe(int recipeId, Recipe recipeData)
@@ -63,6 +72,15 @@ namespace checkpoint7.Services
             return recipes;
         }
 
+        internal Recipe CreateRecipe(RecipesController recipeData)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal Task<ActionResult<Recipe>> UpdateRecipe(int id, RecipesController recipeData)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 

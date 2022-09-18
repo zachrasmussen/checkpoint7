@@ -1,4 +1,6 @@
 using System;
+using checkpoint7.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace checkpoint7.Services
 {
@@ -6,6 +8,8 @@ namespace checkpoint7.Services
     {
         private readonly IngredientsRepository _ingredientsRepo;
         private readonly RecipesService _recipesService;
+
+        public object RecipeId { get; private set; }
 
         public IngredientsService(IngredientsRepository ingredientsRepository, RecipesService recipesService)
         {
@@ -42,6 +46,11 @@ namespace checkpoint7.Services
                 throw new SystemException("You can't delete ingredients if they don't belong to you.");
             }
             return _ingredientsRepo.DeleteIngredient(ingredientId);
+        }
+
+        internal Ingredient CreateIngredient(Ingredient ingredientData, string id)
+        {
+            throw new NotImplementedException();
         }
 
         internal List<Ingredient> GetRecipeIngredients(int id)
