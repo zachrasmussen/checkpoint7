@@ -98,6 +98,6 @@ a:hover {
   color: white;
 }
 .mini-nav {
-  transform: translateY(30px);
+  transform: translateY(80px);
 }
 </style>
