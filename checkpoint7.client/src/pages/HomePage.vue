@@ -2,6 +2,22 @@
   <div class="home flex-grow-1 d-flex justify-content-evenly p-4">
     <RecipeCard />
   </div>
+  <div>
+    <i
+      class="
+        mdi mdi-plus-circle
+        fixed-bottom
+        add-recipe
+        justify-content-end
+        d-flex
+        px-2
+      "
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+    ></i>
+
+    <NewRecipeCard />
+  </div>
 </template>
 
 <script>
@@ -27,5 +43,10 @@ export default {
       object-position: center;
     }
   }
+}
+.add-recipe {
+  font-size: 3em;
+  color: #0096fa;
+  cursor: pointer;
 }
 </style>

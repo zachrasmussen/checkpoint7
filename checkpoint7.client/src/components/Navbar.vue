@@ -2,7 +2,7 @@
   <div class="rounded bg-img shadow">
     <div class="row">
       <nav class="navbar navbar-expand-lg bg-transparent px-5">
-        <div class="d-flex justify-content-end">
+        <div class="d-none d-lg-block col-md-2">
           <form class="d-flex" role="search">
             <input
               class="form-control rounded-0"
@@ -18,7 +18,13 @@
         </div>
 
         <div
-          class="collapse navbar-collapse justify-content-end d-flex"
+          class="
+            col-1 col-md-3
+            collapse
+            navbar-collapse
+            justify-content-end
+            d-flex
+          "
           id="navbarText"
         >
           <!-- LOGIN COMPONENT HERE -->
@@ -35,7 +41,7 @@
     <div class="row justify-content-center d-flex">
       <div
         class="
-          col-4
+          col-10 col-md-8 col-lg-4
           d-flex
           justify-content-evenly
           bg-white

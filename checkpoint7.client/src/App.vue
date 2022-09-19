@@ -1,8 +1,8 @@
 <template>
-  <header class="p-4">
+  <header class="p-4 bg-white">
     <Navbar />
   </header>
-  <main>
+  <main class="bg-white">
     <router-view />
   </main>
   <footer></footer>
