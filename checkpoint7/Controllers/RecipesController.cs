@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using checkpoint7.Models;
 using checkpoint7.Services;
 using CodeWorks.Auth0Provider;
@@ -73,6 +74,8 @@ namespace checkpoint7.Controllers
             }
         }
 
+
+
         [HttpGet("{id}/steps")]
         public ActionResult<List<Step>> GetSteps(int id)
         {
@@ -84,7 +87,7 @@ namespace checkpoint7.Controllers
                     throw new SystemException("invalid recipe Id");
                 }
                 List<Step> steps = _stepsService.GetRecipeSteps(id);
-                return Ok(steps)
+                return Ok(steps);
             }
             catch (Exception e)
             {
@@ -111,7 +114,9 @@ namespace checkpoint7.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<Recipe>> UpdateRecipeAsync(int id, [FromBody] RecipesController recipeData)
+        public async Task
+
+        <ActionResult<Recipe>> UpdateRecipeAsync(int id, [FromBody] Recipe recipeData)
         {
             try
             {

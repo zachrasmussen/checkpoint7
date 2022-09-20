@@ -1,3 +1,9 @@
+using System;
+using System.Collections.Generic;
+using checkpoint7.Models;
+using checkpoint7.Services;
+using Microsoft.AspNetCore.Mvc;
+
 namespace checkpoint7.Repositories
 {
     public class RecipesRepository
@@ -19,6 +25,11 @@ namespace checkpoint7.Repositories
             int id = _db.ExecuteScalar<int>(sql, recipeData);
             recipeData.Id = id;
             return recipeData;
+        }
+
+        internal Recipe CreateRecipe(RecipesService recipeData)
+        {
+            throw new NotImplementedException();
         }
 
         internal RecipesRepository GetById(int id)

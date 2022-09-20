@@ -30,7 +30,7 @@ CREATE TABLE
         FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
     ) default charset utf8 COMMENT '';
 
-DROP TABLE recipes;
+
 
 CREATE TABLE
     IF NOT EXISTS ingredients(
@@ -42,6 +42,6 @@ CREATE TABLE
         recipeId INT NOT NULL COMMENT 'ingredient recipe'
     ) default charset utf8 COMMENT '';
 
-DROP TABLE ingredients;
+
 
 

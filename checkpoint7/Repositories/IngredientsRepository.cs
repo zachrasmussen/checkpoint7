@@ -1,3 +1,9 @@
+using System.Collections.Generic;
+using System.Data;
+using checkpoint7.Models;
+using Dapper;
+using Microsoft.AspNetCore.Mvc;
+
 namespace checkpoint7.Repositories
 {
     public class IngredientsRepository

@@ -36,7 +36,7 @@ namespace checkpoint7.Controllers
             try
             {
                 Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
-                return _stepsService.CreateStep(stepData, userInfo.Id)
+                return _stepsService.CreateStep(stepData, userInfo.Id);
             }
             catch (Exception e)
             {
@@ -55,7 +55,7 @@ namespace checkpoint7.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(e.Message)
+                return BadRequest(e.Message);
             }
         }
     }
